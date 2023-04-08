@@ -109,7 +109,7 @@ def checkOneTwo(number):
   except ValueError:
     newNum=input(colored("Please type 1 or 2 ::", "red", attrs=["bold"]))
     return checkOneTwo(newNum)
-  if(number>2):
+  if(number>2 or number<=0):
     newNum=input(colored("Please type 1 or 2 ::", "red", attrs=["bold"]))
     return checkOneTwo(newNum)
   return number
@@ -285,7 +285,7 @@ It was hard to tell who was winning as I expertly weaved myself through the batt
 
 
 They were all fools. ->:"""))
-    name=input("""
+    name=input(italics("""
 I flew off in the shuttle.
 
 Everything went according to plan.
@@ -295,7 +295,7 @@ The Criminal Group that I had convinced I was their one and only Boss over 5 yea
 And the Secret Organization that I originally worked for and set me up.
 
 Hopefully no one knows how I did it and who was here.
-I've gone by many aliases; Midnight, Ghost, 29619.  But they will never know my true name... :: """)
+I've gone by many aliases; Midnight, Ghost, 29619.  But they will never know my true name... :: """))
     print(italics(bold(f"Ace Agent {name}.")))
 
 #SMARTS STAT NODES ----------------------------------------------------------------
@@ -495,6 +495,13 @@ You take a step back and hear another bellow.
 
     
 #begin the game
-stats=Player() #player object containing stat values and stage position
-intro(stats)
-print("THE END! THANKS FOR PLAYING!")
+while True:
+  stats=Player() #player object containing stat values and stage position
+  intro(stats)
+  print("THE END! THANKS FOR PLAYING!")
+  exit=input(bold("""
+If you would like quit please type [exit].
+Otherwise enter anything else to start again.
+::"""))
+  if stats.stage==3 and exit=="exit":
+    break
